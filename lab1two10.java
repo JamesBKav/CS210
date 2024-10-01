@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class lab1two10 {
-	// dont forget to add the check
 	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
 		long card = sc.nextLong();
