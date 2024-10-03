@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class lab1two10 {
+public class cs210_lab_1 {
 	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
 		long card = sc.nextLong();
