@@ -31,10 +31,8 @@ public class cs210_lab_1 {
 			}
 			card = card / 10;			// itterates to the next number
 		}
-		
 		if( sums % 10 == 0 ) {				// if the total %10==0
-								// then Luhns algorithm is valid
-			System.out.println("VALID");
+			System.out.println("VALID");		// then Luhns algorithm is valid
 		}else {						// if not ==0 then algorithm is invalid
 			System.out.println("INVALID");
 		}		
