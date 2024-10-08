@@ -1,7 +1,7 @@
 package cs210_labs;
 
 import java.util.Scanner;
-public class cs210_lab_2 {
+public class cs210_lab_1_part_2 {
 	public static void main(String[] args){
 		
 		Scanner sc = new Scanner(System.in);	// defines scanner
