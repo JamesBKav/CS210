@@ -1,0 +1,135 @@
+package cs210lab5;
+
+public class Stack {
+	private int maxSize; // size of stack array
+	private long[] stackArray;
+	private int top; // top of stack
+	
+	public Stack(int s) { // constructor
+		maxSize = s; // set array size
+		stackArray = new long[maxSize]; // create array
+		top = -1; // no items yet
+	}
+	// put item on top of stack
+	public void push(long j) {
+		top++;
+		stackArray[top] = j;
+		// increment top, insert item
+	}
+	// take item from top of stack
+	public long pop() {
+		return stackArray[top--];
+		//access item, decrement top
+	}
+	// peek at top of stack
+	public long peek() {
+		return stackArray[top];
+	}
+
+}
+
+
+
+package cs210lab5;
+
+public class Queue{
+	private int maxSize;
+	private String[] queArray;
+	private int front;
+	private int rear;
+	private int nItems;
+	
+	public Queue(int s) { // constructor
+		maxSize = s;
+		queArray = new String[maxSize];
+		front = 0;
+		rear = -1;
+		nItems = 0;
+	}
+	public boolean insert(String j) { // put item at rear of queue
+		 if(rear==maxSize-1) {return false;}
+		 if(rear==maxSize-1) {
+			 rear-=1;
+		 }
+		 rear++;
+		 queArray[rear]=j;
+		 nItems++;
+		 return true;
+		}
+	
+	public void display() {
+		if(front == rear) {
+			System.out.println("Queue is empty");
+		}
+		for(int i = front;i<rear;i++) {
+			System.out.println(queArray[i]);
+		}
+	}
+}
+
+
+
+package cs210lab5;
+import java.util.Scanner;
+import java.util.Stack;
+public class cs210_lab5_part2{
+	public static void main(String[] args) {
+    	Stack directions = new Stack();
+    	Queue queue = new Queue(10);
+    	directions = stacker(directions,queue);	// adds values to stack
+
+        wayBack(directions);	// prints reverse values in stack
+        System.out.println();
+        queue.display();
+    }
+    
+    // creates Stack of directions
+    static Stack stacker(Stack<String> stk, Queue queue) {
+    	Scanner sc = new Scanner(System.in);
+    	String s = "";
+    	int x=0;
+    	
+        // Push elements onto the stack
+    	while(s.equals("arrived") != true && x < 100) {
+    		String input = sc.nextLine().toLowerCase();
+    		stk.push(input);
+    		queue.insert(input);
+    		//
+    		s = stk.peek();
+    		// removed previous direction when go back is typed
+    		if(s.equals("go back")) {
+    			stk.pop();
+    			stk.pop();
+    			s = stk.peek();
+    		}
+    		x++;
+    	}
+    	
+    	if(x<1) {		// terminates code if not enough directions
+    		System.out.println("must have 1 or more directions");
+    		System.exit(0);
+    	}
+        sc.close();		// closes scanner
+        stk.pop();		// removes arrived for further operation
+        return stk;		// returns stack
+    }
+    
+    static void wayBack(Stack<String> a) {
+    	while(!a.isEmpty()) {
+    		switch (a.pop()) {
+    		case ("go north"):
+    			System.out.println("Go South");
+    			break;
+    		case ("go south"):
+    			System.out.println("Go North");
+    			break;
+    		case ("go east"):
+    			System.out.println("Go West");
+    			break;
+    		case ("go west"):
+    			System.out.println("Go East");
+    			break;
+    		}
+    	}
+    }
+}
